@@ -1,0 +1,32 @@
+{% load staticfiles %}
+{% load leaflet_tags %}
+<html>
+
+	<head>
+		{% leaflet_js %}
+		{% leaflet_css %}
+		<style type="text/css">#gis {width: 80%; height: 700px;}</style>
+		<title>Projecten Ingenieursbureau Amsterdam</title>
+		<meta charset="utf-8" />
+		<link rel="icon" href="https://www.amsterdam.nl/favicon.ico" type="image/x-icon">
+
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<script type="text/javascript" src="{% static '/dist/leaflet.ajax.min.js' %}"></script>
+	</head>
+
+	<body>
+		<div><h1>Projecten Ingenieursbureau Amsterdam<h1></div>
+
+		<script type="text/javascript" >
+		function loadData(map, options) {
+	   	var datasets = new L.geoJson.ajax("{% url 'projecten' %}",{});
+		datasets.addTo(map);			
+	}
+
+		</script>
+		<div class="content-wrapper">
+		{% leaflet_map "gis" callback="window.loadData" %}
+		</div>
+	</body>
+</html>

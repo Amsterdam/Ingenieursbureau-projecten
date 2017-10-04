@@ -1,0 +1,810 @@
+[
+    {
+        "fields": {
+            "Cluster": "Bedrijfsvoering",
+            "Organisatie": "Bureau Interim en Advies"
+        },
+        "model": "app.organisatie",
+        "org_id": 1
+    },
+    {
+        "fields": {
+            "Cluster": "Bedrijfsvoering",
+            "Organisatie": "Communicatiebureau"
+        },
+        "model": "app.organisatie",
+        "org_id": 2
+    },
+    {
+        "fields": {
+            "Cluster": "Bedrijfsvoering",
+            "Organisatie": "Facilitair Bureau"
+        },
+        "model": "app.organisatie",
+        "org_id": 3
+    },
+    {
+        "fields": {
+            "Cluster": "Bedrijfsvoering",
+            "Organisatie": "Financien"
+        },
+        "model": "app.organisatie",
+        "org_id": 4
+    },
+    {
+        "fields": {
+            "Cluster": "Bedrijfsvoering",
+            "Organisatie": "ICT"
+        },
+        "model": "app.organisatie",
+        "org_id": 5
+    },
+    {
+        "fields": {
+            "Cluster": "Bedrijfsvoering",
+            "Organisatie": "Juridisch Bureau"
+        },
+        "model": "app.organisatie",
+        "org_id": 6
+    },
+    {
+        "fields": {
+            "Cluster": "Bedrijfsvoering",
+            "Organisatie": "OR"
+        },
+        "model": "app.organisatie",
+        "org_id": 7
+    },
+    {
+        "fields": {
+            "Cluster": "Bestuur en Organisatie",
+            "Organisatie": "Bestuur en Organisatie"
+        },
+        "model": "app.organisatie",
+        "org_id": 8
+    },
+    {
+        "fields": {
+            "Cluster": "Bestuur en Organisatie",
+            "Organisatie": "Gemeentebestuur"
+        },
+        "model": "app.organisatie",
+        "org_id": 9
+    },
+    {
+        "fields": {
+            "Cluster": "Bestuur en Organisatie",
+            "Organisatie": "Griffie"
+        },
+        "model": "app.organisatie",
+        "org_id": 10
+    },
+    {
+        "fields": {
+            "Cluster": "Bestuur en Organisatie",
+            "Organisatie": "Ombudsman Metropool Amsterdam"
+        },
+        "model": "app.organisatie",
+        "org_id": 11
+    },
+    {
+        "fields": {
+            "Cluster": "Bestuur en Organisatie",
+            "Organisatie": "Rekenkamer"
+        },
+        "model": "app.organisatie",
+        "org_id": 12
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Bedrijfsvoering",
+            "Organisatie": "Bureau Interim en Advies"
+        },
+        "model": "app.organisatie",
+        "org_id": 13
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Bedrijfsvoering",
+            "Organisatie": "Clusterstaf"
+        },
+        "model": "app.organisatie",
+        "org_id": 14
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Bedrijfsvoering",
+            "Organisatie": "Communicatiebureau"
+        },
+        "model": "app.organisatie",
+        "org_id": 15
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Bedrijfsvoering",
+            "Organisatie": "Facilitair Bureau"
+        },
+        "model": "app.organisatie",
+        "org_id": 16
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Bedrijfsvoering",
+            "Organisatie": "Financiën"
+        },
+        "model": "app.organisatie",
+        "org_id": 17
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Bedrijfsvoering",
+            "Organisatie": "ICT"
+        },
+        "model": "app.organisatie",
+        "org_id": 18
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Bedrijfsvoering",
+            "Organisatie": "Juridisch Bureau"
+        },
+        "model": "app.organisatie",
+        "org_id": 19
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Bedrijfsvoering",
+            "Organisatie": "Personeel en Organisatieadvies"
+        },
+        "model": "app.organisatie",
+        "org_id": 20
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Bedrijfsvoering",
+            "Organisatie": "Staf Bedrijfsvoering"
+        },
+        "model": "app.organisatie",
+        "org_id": 21
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Bedrijfsvoering",
+            "Organisatie": "VGA Verzekeringen"
+        },
+        "model": "app.organisatie",
+        "org_id": 22
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Dienstverlening en Informatie",
+            "Organisatie": "Basisinformatie"
+        },
+        "model": "app.organisatie",
+        "org_id": 23
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Dienstverlening en Informatie",
+            "Organisatie": "Belastingen"
+        },
+        "model": "app.organisatie",
+        "org_id": 24
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Dienstverlening en Informatie",
+            "Organisatie": "Clusterstaf"
+        },
+        "model": "app.organisatie",
+        "org_id": 25
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Dienstverlening en Informatie",
+            "Organisatie": "Dienstverlening"
+        },
+        "model": "app.organisatie",
+        "org_id": 26
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Dienstverlening en Informatie",
+            "Organisatie": "Handhaving en Toezicht"
+        },
+        "model": "app.organisatie",
+        "org_id": 27
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Dienstverlening en Informatie",
+            "Organisatie": "Monumenten en Archeologie"
+        },
+        "model": "app.organisatie",
+        "org_id": 28
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Dienstverlening en Informatie",
+            "Organisatie": "Onderzoek, Informatie en Statistiek"
+        },
+        "model": "app.organisatie",
+        "org_id": 29
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Dienstverlening en Informatie",
+            "Organisatie": "Stadsarchief"
+        },
+        "model": "app.organisatie",
+        "org_id": 30
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Dienstverlening en Informatie",
+            "Organisatie": "Stadsbank van Lening"
+        },
+        "model": "app.organisatie",
+        "org_id": 31
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Dienstverlening en Informatie",
+            "Organisatie": "Staf Dienstverlening en informatie"
+        },
+        "model": "app.organisatie",
+        "org_id": 32
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Clusterstaf"
+        },
+        "model": "app.organisatie",
+        "org_id": 33
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Economie"
+        },
+        "model": "app.organisatie",
+        "org_id": 34
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Gemeentelijk Vastgoed"
+        },
+        "model": "app.organisatie",
+        "org_id": 35
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Grond en Ontwikkeling"
+        },
+        "model": "app.organisatie",
+        "org_id": 36
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Ingenieursbureau"
+        },
+        "model": "app.organisatie",
+        "org_id": 37
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Kunst en Cultuur"
+        },
+        "model": "app.organisatie",
+        "org_id": 38
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Materiaalbureau"
+        },
+        "model": "app.organisatie",
+        "org_id": 39
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Metro en Tram"
+        },
+        "model": "app.organisatie",
+        "org_id": 40
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Parkeren"
+        },
+        "model": "app.organisatie",
+        "org_id": 41
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Programmateam Afval"
+        },
+        "model": "app.organisatie",
+        "org_id": 42
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Projectmanagementbureau"
+        },
+        "model": "app.organisatie",
+        "org_id": 43
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Ruimte en Duurzaamheid"
+        },
+        "model": "app.organisatie",
+        "org_id": 44
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Staf Ruimte en Economie"
+        },
+        "model": "app.organisatie",
+        "org_id": 45
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Strategie"
+        },
+        "model": "app.organisatie",
+        "org_id": 46
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Verkeer en Openbare Ruimte"
+        },
+        "model": "app.organisatie",
+        "org_id": 47
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Wonen"
+        },
+        "model": "app.organisatie",
+        "org_id": 48
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Ruimte en Economie",
+            "Organisatie": "Zuidas"
+        },
+        "model": "app.organisatie",
+        "org_id": 49
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Sociaal",
+            "Organisatie": "Clusterstaf"
+        },
+        "model": "app.organisatie",
+        "org_id": 50
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Sociaal",
+            "Organisatie": "GGD"
+        },
+        "model": "app.organisatie",
+        "org_id": 51
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Sociaal",
+            "Organisatie": "Inkomen"
+        },
+        "model": "app.organisatie",
+        "org_id": 52
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Sociaal",
+            "Organisatie": "Onderwijs, Jeugd en Zorg"
+        },
+        "model": "app.organisatie",
+        "org_id": 53
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Sociaal",
+            "Organisatie": "Participatie"
+        },
+        "model": "app.organisatie",
+        "org_id": 54
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Sociaal",
+            "Organisatie": "Sport en Bos"
+        },
+        "model": "app.organisatie",
+        "org_id": 55
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Sociaal",
+            "Organisatie": "Subsidies en Inkoop Sociaal"
+        },
+        "model": "app.organisatie",
+        "org_id": 56
+    },
+    {
+        "fields": {
+            "Cluster": "Cluster Sociaal",
+            "Organisatie": "Werk"
+        },
+        "model": "app.organisatie",
+        "org_id": 57
+    },
+    {
+        "fields": {
+            "Cluster": "Dienstverlening en Informatie",
+            "Organisatie": "Basisinformatie"
+        },
+        "model": "app.organisatie",
+        "org_id": 58
+    },
+    {
+        "fields": {
+            "Cluster": "Dienstverlening en Informatie",
+            "Organisatie": "Belastingen"
+        },
+        "model": "app.organisatie",
+        "org_id": 59
+    },
+    {
+        "fields": {
+            "Cluster": "Dienstverlening en Informatie",
+            "Organisatie": "Dienstverlening"
+        },
+        "model": "app.organisatie",
+        "org_id": 60
+    },
+    {
+        "fields": {
+            "Cluster": "Dienstverlening en Informatie",
+            "Organisatie": "Handhaving en Toezicht"
+        },
+        "model": "app.organisatie",
+        "org_id": 61
+    },
+    {
+        "fields": {
+            "Cluster": "Dienstverlening en Informatie",
+            "Organisatie": "Monumenten en Archeologie"
+        },
+        "model": "app.organisatie",
+        "org_id": 62
+    },
+    {
+        "fields": {
+            "Cluster": "Dienstverlening en Informatie",
+            "Organisatie": "Onderzoek, Informatie en Statistiek"
+        },
+        "model": "app.organisatie",
+        "org_id": 63
+    },
+    {
+        "fields": {
+            "Cluster": "Dienstverlening en Informatie",
+            "Organisatie": "Stadsarchief"
+        },
+        "model": "app.organisatie",
+        "org_id": 64
+    },
+    {
+        "fields": {
+            "Cluster": "Regionaal",
+            "Organisatie": "Afvalservice West"
+        },
+        "model": "app.organisatie",
+        "org_id": 65
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Economie"
+        },
+        "model": "app.organisatie",
+        "org_id": 66
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Gemeentelijk Vastgoed"
+        },
+        "model": "app.organisatie",
+        "org_id": 67
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Grond en Ontwikkeling"
+        },
+        "model": "app.organisatie",
+        "org_id": 68
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Ingenieursbureau"
+        },
+        "model": "app.organisatie",
+        "org_id": 69
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Kunst en Cultuur"
+        },
+        "model": "app.organisatie",
+        "org_id": 70
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Materiaalbureau"
+        },
+        "model": "app.organisatie",
+        "org_id": 71
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Metro en Tram"
+        },
+        "model": "app.organisatie",
+        "org_id": 72
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Parkeren"
+        },
+        "model": "app.organisatie",
+        "org_id": 73
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Projectmanagementbureau"
+        },
+        "model": "app.organisatie",
+        "org_id": 74
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Ruimte en Duurzaamheid"
+        },
+        "model": "app.organisatie",
+        "org_id": 75
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Verkeer en Openbare Ruimte"
+        },
+        "model": "app.organisatie",
+        "org_id": 76
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Wonen"
+        },
+        "model": "app.organisatie",
+        "org_id": 77
+    },
+    {
+        "fields": {
+            "Cluster": "Ruimte en Economie",
+            "Organisatie": "Zuidas"
+        },
+        "model": "app.organisatie",
+        "org_id": 78
+    },
+    {
+        "fields": {
+            "Cluster": "Sociaal",
+            "Organisatie": "GGD Amsterdam"
+        },
+        "model": "app.organisatie",
+        "org_id": 79
+    },
+    {
+        "fields": {
+            "Cluster": "Sociaal",
+            "Organisatie": "Inkomen"
+        },
+        "model": "app.organisatie",
+        "org_id": 80
+    },
+    {
+        "fields": {
+            "Cluster": "Sociaal",
+            "Organisatie": "Onderwijs Jeugd en Zorg"
+        },
+        "model": "app.organisatie",
+        "org_id": 81
+    },
+    {
+        "fields": {
+            "Cluster": "Sociaal",
+            "Organisatie": "Participatie"
+        },
+        "model": "app.organisatie",
+        "org_id": 82
+    },
+    {
+        "fields": {
+            "Cluster": "Sociaal",
+            "Organisatie": "Sport en Bos"
+        },
+        "model": "app.organisatie",
+        "org_id": 83
+    },
+    {
+        "fields": {
+            "Cluster": "Sociaal",
+            "Organisatie": "Subsidies en Inkoop Sociaal"
+        },
+        "model": "app.organisatie",
+        "org_id": 84
+    },
+    {
+        "fields": {
+            "Cluster": "Sociaal",
+            "Organisatie": "Werk"
+        },
+        "model": "app.organisatie",
+        "org_id": 85
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdeelorganisaties",
+            "Organisatie": "IV Stadsdelen"
+        },
+        "model": "app.organisatie",
+        "org_id": 86
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdeelorganisaties",
+            "Organisatie": "Stadsdeel Centrum"
+        },
+        "model": "app.organisatie",
+        "org_id": 87
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdeelorganisaties",
+            "Organisatie": "Stadsdeel Nieuw-West"
+        },
+        "model": "app.organisatie",
+        "org_id": 88
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdeelorganisaties",
+            "Organisatie": "Stadsdeel Noord"
+        },
+        "model": "app.organisatie",
+        "org_id": 89
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdeelorganisaties",
+            "Organisatie": "Stadsdeel Oost"
+        },
+        "model": "app.organisatie",
+        "org_id": 90
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdeelorganisaties",
+            "Organisatie": "Stadsdeel West"
+        },
+        "model": "app.organisatie",
+        "org_id": 91
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdeelorganisaties",
+            "Organisatie": "Stadsdeel Zuid"
+        },
+        "model": "app.organisatie",
+        "org_id": 92
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdeelorganisaties",
+            "Organisatie": "Stadsdeel Zuidoost"
+        },
+        "model": "app.organisatie",
+        "org_id": 93
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdelen",
+            "Organisatie": "Informatievoorziening Stadsdelen"
+        },
+        "model": "app.organisatie",
+        "org_id": 94
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdelen",
+            "Organisatie": "Stadsdeel Centrum"
+        },
+        "model": "app.organisatie",
+        "org_id": 95
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdelen",
+            "Organisatie": "Stadsdeel Nieuw West"
+        },
+        "model": "app.organisatie",
+        "org_id": 96
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdelen",
+            "Organisatie": "Stadsdeel Noord"
+        },
+        "model": "app.organisatie",
+        "org_id": 97
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdelen",
+            "Organisatie": "Stadsdeel Oost"
+        },
+        "model": "app.organisatie",
+        "org_id": 98
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdelen",
+            "Organisatie": "Stadsdeel West"
+        },
+        "model": "app.organisatie",
+        "org_id": 99
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdelen",
+            "Organisatie": "Stadsdeel Zuid"
+        },
+        "model": "app.organisatie",
+        "org_id": 100
+    },
+    {
+        "fields": {
+            "Cluster": "Stadsdelen",
+            "Organisatie": "Stadsdeel Zuidoost"
+        },
+        "model": "app.organisatie",
+        "org_id": 101
+    }
+]
