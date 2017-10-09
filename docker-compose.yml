@@ -1,4 +1,4 @@
-version: "3"
+version: "3.0"
 services:
   database:
     image: build.datapunt.amsterdam.nl:5000/atlas/postgres
@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: ibprojecten
 
   web:
-    build: src/
+    build: ./web
     ports:
       - "8112:8000"
     links:

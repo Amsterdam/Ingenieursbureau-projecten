@@ -1,7 +1,9 @@
-from django.db import models
+#from django.db import models
 from django.contrib.gis.db import models
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+from rest_framework import serializers
 from datetime import datetime
-# Create your models here.
 
 # /////////////////////////////////////////////////
 # Option menu's
@@ -51,9 +53,17 @@ class Employee(models.Model):
                             related_name='collegue_role',
                             on_delete=models.CASCADE,
                             null=True)
+    ZoekeenCollegaUrl = models.CharField(max_length=128, blank=True, null=True)
+
+    def Functie(self):
+        return '{}'.format(self.Rol.Rol)
 
     def __str__(self):
         return '{} - {} {}'.format(self.Rol, self.Voornaam, self.Achternaam)
+
+    def fullName(self):
+        return '{} {}'.format(self.Voornaam, self.Achternaam)
+
 
     class Meta:
         db_table = 'employee'
@@ -66,7 +76,7 @@ class Employee(models.Model):
 class Project(models.Model):
     pjid = models.AutoField(primary_key=True)
     Projectnaam = models.CharField(max_length=255)
-    Projecttype = models.ForeignKey(ProjectType,  blank=True, related_name='projecttype_project', on_delete=models.CASCADE, null=True)
+    Projecttype = models.ForeignKey(ProjectType, blank=True, related_name='projecttype_project', on_delete=models.CASCADE, null=True)
     Intakedatum = models.DateField(blank=False, default=datetime.now)
 
     startdatum = models.DateField(blank=False, default=datetime.now)
@@ -74,23 +84,19 @@ class Project(models.Model):
 
     Plangebied = models.PolygonField(srid=4326, null=True)
 
-    Organisatie = models.ForeignKey(Organisatie,  blank=True, related_name='organisatie_project', on_delete=models.CASCADE, null=True)
+    Organisatie = models.ForeignKey(Organisatie, blank=True, related_name='organisatie_project', on_delete=models.CASCADE, null=True)
 
-    Bestuurlijkopdrachtgever = models.ForeignKey(Employee,
-                                                 related_name='administrativeclient_project',
-                                                 on_delete=models.CASCADE,
-                                                 blank=True,
-                                                 null=True)
-    Ambtelijkopdrachtgever = models.ForeignKey(Employee,  blank=True, related_name='officialclient_project', on_delete=models.CASCADE, null=True)
-    Opdrachtverantwoordelijke = models.ForeignKey(Employee,  blank=True, related_name='maincontractor_project', on_delete=models.CASCADE, null=True)
-    Deelprojectleider = models.ForeignKey(Employee,  blank=True, related_name='subcontractor_project', on_delete=models.CASCADE, null=True)
-    Accounthouder = models.ForeignKey(Employee, blank=True,  related_name='accountant_project', on_delete=models.CASCADE, null=True)
+    Bestuurlijk_opdrachtgever = models.ForeignKey(Employee, related_name='administrativeclient_project', on_delete=models.CASCADE, blank=True, null=True)
+    Ambtelijk_opdrachtgever = models.ForeignKey(Employee, blank=True, related_name='officialclient_project', on_delete=models.CASCADE, null=True)
+    Opdracht_verantwoordelijke = models.ForeignKey(Employee, blank=True, related_name='maincontractor_project', on_delete=models.CASCADE, null=True)
+    Deel_projectleider = models.ForeignKey(Employee, blank=True, related_name='subcontractor_project', on_delete=models.CASCADE, null=True)
+    Account_houder = models.ForeignKey(Employee, blank=True, related_name='accountant_project', on_delete=models.CASCADE, null=True)
 
     Planningsnummer = models.CharField(max_length=18, null=True)
 
     @property
-    def empoyee_project(self):
-        return self.employee.Voornaam, self.employee.Achternaam
+    def Type(self):
+        return '{}'.format(self.Projecttype.Projectype)
 
     def __str__(self):
         return '{} - {}'.format(self.pjid, self.Projectnaam)

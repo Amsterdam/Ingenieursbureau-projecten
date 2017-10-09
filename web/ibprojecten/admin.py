@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Employee, Rol, Werkorder, ProjectType, ProjectPlan, Organisatie
+from ibprojecten.api.models import Project, Employee, Rol, Werkorder, ProjectType, ProjectPlan, Organisatie
 from leaflet.admin import LeafletGeoAdmin
 
 # Register your models here.
