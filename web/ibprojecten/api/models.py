@@ -37,7 +37,9 @@ class ProjectType(models.Model):
     Projectype = models.CharField(max_length=255, null=True)
 
     def __str__(self):
-        return '{}-{}'.format(self.type_id, self.Projectype)
+        return '{}'.format(self.Projectype)
+    #def __unicode__(self):
+    #    return self.Projectype
 
     class Meta:
         db_table = 'projecttype'
@@ -75,8 +77,8 @@ class Employee(models.Model):
 
 class Project(models.Model):
     pjid = models.AutoField(primary_key=True)
-    Projectnaam = models.CharField(max_length=255)
-    Projecttype = models.ForeignKey(ProjectType, blank=True, related_name='projecttype_project', on_delete=models.CASCADE, null=True)
+    Locatie = models.CharField(max_length=255)
+    Projecttype = models.ManyToManyField(ProjectType, related_name='project_type_project')
     Intakedatum = models.DateField(blank=False, default=datetime.now)
 
     startdatum = models.DateField(blank=False, default=datetime.now)
@@ -92,14 +94,19 @@ class Project(models.Model):
     Deel_projectleider = models.ForeignKey(Employee, blank=True, related_name='subcontractor_project', on_delete=models.CASCADE, null=True)
     Account_houder = models.ForeignKey(Employee, blank=True, related_name='accountant_project', on_delete=models.CASCADE, null=True)
 
-    Planningsnummer = models.CharField(max_length=18, null=True)
+    Timetellnummer = models.CharField(max_length=18, null=True)
 
+    # Convert manytomany list into a string 
     @property
-    def Type(self):
-        return '{}'.format(self.Projecttype.Projectype)
+    def project_types(self):
+        return ', '.join([a.Projectype for a in self.Projecttype.all()])
+    
+    @property
+    def Jaar(self):
+        return '{}'.format(self.startdatum.year)
 
     def __str__(self):
-        return '{} - {}'.format(self.pjid, self.Projectnaam)
+        return '{} - {} - {} - {}'.format(self.pjid, self.project_types, self.Locatie, self.Jaar )
 
     objects = models.GeoManager()
 
@@ -121,7 +128,7 @@ class Project(models.Model):
 class Werkorder(models.Model):
     werkorder_id = models.AutoField(primary_key=True)
     Werkordernaam = models.CharField(max_length=255, null=True)
-    Planningsnummer = models.CharField(max_length=18, null=True)
+    Timetellnummer = models.CharField(max_length=18, null=True)
     Boekingscombinatie = models.CharField(max_length=18, null=True)
     #WerkorderPlangebied = models.PolygonField(srid=4326, null=True)
     Project = models.ForeignKey(Project,

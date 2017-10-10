@@ -2,6 +2,9 @@ from django.contrib import admin
 from ibprojecten.api.models import Project, Employee, Rol, Werkorder, ProjectType, ProjectPlan, Organisatie
 from leaflet.admin import LeafletGeoAdmin
 
+# Change header name
+admin.site.site_header = 'Startdocument Project Ingenieursbureau'
+
 # Register your models here.
 
 # //////////////////////////////////////////////
