@@ -3,8 +3,10 @@ MAINTAINER datapunt@amsterdam.nl
 
 ENV PYTHONUNBUFFERED 1
 
+
+
 RUN mkdir -p /static \
-	&& chown datapunt /static \
+	&& chown datapunt /static 
 
 COPY requirements.txt /app/
 
@@ -18,6 +20,5 @@ USER datapunt
 
 RUN export DJANGO_SETTINGS_MODULE=ibprojecten.settings
 RUN python manage.py collectstatic
-
 CMD uwsgi
 
