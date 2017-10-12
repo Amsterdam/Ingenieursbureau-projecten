@@ -98,7 +98,7 @@ class Project(models.Model):
 
     # Convert manytomany list into a string 
     @property
-    def project_types(self):
+    def Type(self):
         return ', '.join([a.Projectype for a in self.Projecttype.all()])
     
     @property
@@ -106,7 +106,7 @@ class Project(models.Model):
         return '{}'.format(self.startdatum.year)
 
     def __str__(self):
-        return '{} - {} - {} - {}'.format(self.pjid, self.project_types, self.Locatie, self.Jaar )
+        return '{} - {} - {} - {}'.format(self.pjid, self.Type, self.Locatie, self.Jaar )
 
     objects = models.GeoManager()
 

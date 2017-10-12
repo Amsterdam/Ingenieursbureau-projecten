@@ -80,7 +80,7 @@ class ProjectGeoJsonSerializer(GeoFeatureModelSerializer):
         geo_field = 'Plangebied'
         fields = [
             'Locatie',
-            'ProjectType',
+            'Type',
             'Opdrachtverantwoordelijke',
             'Ambtelijkopdrachtgever',
             'Bestuurlijkopdrachtgever',
