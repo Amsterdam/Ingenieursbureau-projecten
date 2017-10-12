@@ -41,13 +41,13 @@ router.register(prefix='organisation', viewset=OrganisationViewSet)
 urlpatterns = router.urls
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^api/', include(router.urls)),
+    url(r'^ibprojecten/admin/', admin.site.urls),
+    url(r'^ibprojecten/api/', include(router.urls)),
     #url(r'^', include('app.urls')),
-    url(r'^api/projecten/$', projectenList, name='projecten'),
-    url(r'^api/projecten/(?P<pk>[0-9]+)/$', projectDetail),
+    url(r'^ibprojecten/api/projecten/$', projectenList, name='projecten'),
+    url(r'^ibprojecten/api/projecten/(?P<pk>[0-9]+)/$', projectDetail),
     #url(r'^api/employees/(?P<pk>[0-9]+)/$', employeeDetail, name='employee-detail'),
-    url(r'^$', HomePageView.as_view(), name='home'),
+    url(r'^ibprojecten/$', HomePageView.as_view(), name='home'),
 ]
 
 
