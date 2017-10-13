@@ -17,6 +17,39 @@
             }
 
             #gis {width: 80%; height: 700px;}
+            
+            .chart {
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+            }
+             
+            .axis path,.axis line {
+                fill: none;
+                stroke: #000;
+                shape-rendering: crispEdges;
+            }
+             
+            .bar {
+                fill: #33b5e5;
+            }
+             
+            .bar-failed {
+                fill: #CC0000;
+            }
+             
+            .bar-running {
+                fill: #669900;
+            }
+             
+            .bar-succeeded {
+                fill: #33b5e5;
+            }
+             
+            .bar-killed {
+                fill: #ffbb33;
+            }
+             
+
 
         </style>
         <title>Projecten Ingenieursbureau Amsterdam</title>
@@ -26,7 +59,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <script type="text/javascript" src="{% static '/js/leaflet.ajax.min.js' %}"></script>
         <script type="text/javascript" src="{% static '/js/leaflet.wms.js' %}"></script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.4.2/b-html5-1.4.2/datatables.min.css"/>
  
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
@@ -34,6 +67,11 @@
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.4.2/b-html5-1.4.2/datatables.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
         <link href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.2/vega.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.0-rc3/vega-lite.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-beta.20/vega-embed.js"></script>
+
     </head>
 
     <body>
@@ -43,17 +81,19 @@
         dataSet = [];
         columns = [];
 
+
         function loadData(map, options) {
+         
             var datasets = new L.geoJson.ajax("{% url 'projecten' %}", { 
               
               onEachFeature: function onEachFeature(feature, layer) {
 
-                console.log(feature);
+                //console.log(feature);
                 var props = feature.properties;
 
                 // Run function to generate Table
                 fillTable(feature)
-                console.log(props);
+                //console.log(props);
                     
                 // Create popup content dynamically
 
@@ -132,8 +172,8 @@
 
             overlays['Stadsdelen'].addTo(map).setOpacity(1);
             datasets.addTo(map);            
-            console.log(datasets);
-
+            //console.log(datasets);
+            
         }
 
         
@@ -159,10 +199,10 @@
             //         document.getElementById("properties").innerHTML = document.getElementById("properties").innerHTML + "<tr><td>" + prop + "</td><td>" + properties[prop] + "</td></tr>";
             //    } 
             // }
-
+            console.log('dataSet');
             console.log(dataSet);
             console.log(columns);
-            //gantt(dataSet);
+            
             $(document).ready(function() {
              $('#example').DataTable( {
                 data: dataSet,
@@ -177,208 +217,50 @@
                 } );
             } );
 
+
+            return dataSet;
         }
         </script>
         <div class="content-wrapper">
             {% leaflet_map "gis" callback="window.loadData" %}
             <!--<table id="properties"></table>-->
             <table id="example" class="display" width="100%"></table>
-            <div id="ganttTitle"></div>
+            <div id="vis"></div>
+
+
         </div>
 
         
            <script>
-            function gantt(dataToReturn) {
-
-                console.log(dataToReturn);
-
-            // ----------------------------------------------------
-            // Gantt chart
-            // ----------------------------------------------------
-
-                $("#ganttTitle").text('Projecten in tijd');
-
-            // var typeOfQuestions = d3.nest()
-            //    .key(function(d) { return d.List; })
-            //    .map(dataToReturn)
-
-            //console.log(typeOfQuestions);
-
-            var colors = d3.scaleOrdinal(d3.schemeCategory10);
-
-            var colors = d3.scaleOrdinal()
-              .range(color);
-
-
-            var yOffset = 8;
-
-
-            function setHeight(d) {return d.length};
-
-
-            var heightDynamic= setHeight(dataToReturn)*7;
-
-            var margin = {top: 20, right: 20, bottom: 70, left: 40};
-                width = 1200 - margin.left - margin.right;
-                height = 1500 - margin.top - margin.bottom;
-              
-              
-              
-             
-
-              var x = d3.scaleTime()
-                  .range([0, width]);
-
-              var y = d3.scaleLinear()
-                  .range([height, 0]);
-
-             // Scale the range of the data
-              x.domain(d3.extent(dataToReturn, function(d) { return d3.timeWeek(d.startDate); }));
-              //y.domain([0, d3.max(data, function(d) { return d.value; })]);
-              y.domain(d3.extent(function(d) { return dataToReturn.id}));
-
-            var gantt = d3.select("#gantt-Chart").append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", 
-                      "translate(" + margin.left + "," + margin.top + ")");
-
-
-
-            var tooltip2 = d3.select('#gantt-Chart')            
-                .append('div')                             
-                .attr('class', 'tooltip');                
-
-              tooltip2.append('div')                        
-              .attr('class', 'label'); 
-
-
-            //for (i = 0; i < dataToReturn.length; i++) {
-            //  if (dataToReturn[i].id=='57ea3ec2e67a03d92305a01a') {console.log(dataToReturn[i]);}};
-
-            gantt.append("g").selectAll("rect")
-              .data(dataToReturn)
-              .enter()
-              .append('rect')
-              .attr('x', function(d){ return x(d3.timeWeek(d.startDate));})
-              .attr('y', function(d,i) {return (i*yOffset)+'px'})
-              .attr('height','6px')
-              .attr('width',function(d){ widthDays = x(d3.timeWeek(d.endDate)) - x(d3.timeWeek(d.startDate));
-                                         if (widthDays == 0) {widthDays = 10};
-                                         return widthDays;})  
-              .style("fill", function(d) { return colors(d.List); })
-                .on("mouseover", function (d) {                                  
-                      d3.select(this)                          //on mouseover of each line, give it a nice thick stroke
-                       .style("stroke","black")
-                       .style("stroke-width",1);})
-                .on("click", function (d) {                                  
-                      d3.select(this)                          //on mouseover of each line, give it a nice thick stroke
-                       .style("stroke","black")
-                       .style("stroke-width",1);
-                      //on mouseover get ID and use it as filter on legend
-                      var getId = d3.select(this).attr("id");  
-                      tooltip2.select('.label').html(d.List+'<br>'+formatMonth(d.startDate)+': <a target="blank" href="'+d.Url+'">'+d.Projectnummer+'</b></a><br>'+
-                                                                                '<b>'+d.Omschrijving+'</b>');
-                      tooltip2.style('display', 'block').transition().duration(1200);
-                      tooltip2.style('top', (d3.event.layerY + 10) + 'px')
-                              .style('left', (d3.event.layerX + 10) + 'px');
-                 //    }
-                      })
-                    .on("mouseout", function(d) {
-                      d3.select(this)
-                      .style("stroke-width",0);  
-                      tooltip2.transition()
-                        .delay(2000)
-                        .style('display', 'none');
-                     });
-                  //.on('mousemove', function(d) {
-                  //    tooltip2.style('top', (d3.event.layerY + 10) + 'px')
-                 //     .style('left', (d3.event.layerX + 10) + 'px');
-                 //    });
-
-            padding = 0;
-              
-
-              //var xAxis = d3.axisBottom(x)
-              //    .tickFormat(d3.timeFormat("%b"));
-                     
-                 
-                    // draw x axis with labels and move to the bottom of the chart area
-                //    gantt.append("g")
-                  //      .attr("class", "xaxis")   // give it a class so it can be used to select only xaxis labels  below
-                    //    .attr("transform", "translate(0,0)")      
-                      //  .call(xAxis);
-
-            // gridlines in x axis function
-            function make_x_gridlines() {   
-                return d3.axisBottom(x)
-                    .ticks(5)
+            // More argument info at https://github.com/vega/vega-embed
+            var yourVlSpec = {
+              "$schema": "https://vega.github.io/schema/vega-lite/v2.0.0-rc3.json",
+              "description": "A simple bar chart with embedded data.",
+              "data": { "url": "http://localhost:8000/ibprojecten/api/projects/?format=json",
+                        "format": {
+                            "type": "json",
+                            "parse": {"startdatum": "date:'%Y-%m-%d'", 
+                                      "einddatum": "date:'%Y-%m-%d'"}
+                            }, 
+                        
+                      },
+              "mark": "bar",
+              "encoding": {
+                "y": {"field": "Locatie", "type": "ordinal"},
+                "x": {"field": "startdatum",   
+                      "timeUnit": "yearmonth",  
+                      "type": "temporal",
+                      "scale": {"nice": "month"},
+                      "axis": {"format": "%Y-%m", "labelAngle": 0}
+                     },
+                "x2": {"field": "einddatum", "type": "temporal"},
+                "color": {"field": "Type",
+                          "type": "ordinal",
+                          "scale": {"scheme": "category20b"}
+                        }
+              }
             }
-
-
-              // add the X gridlines
-              gantt.append("g")     
-                  .attr("class", "grid")
-                  .attr("transform", "translate(0," + height + ")")
-                  .call(make_x_gridlines()
-                      .tickSize(-height)
-                      .tickFormat("")
-                  )
-
-
-             // add the X Axis
-              //gantt.append("g")
-              //    .attr("transform", "translate(0,0)")
-              //    .attr("class", "x-axis")
-              //    .call(d3.axisBottom(x))
-               //    .tickFormat(d3.timeFormat("%b"))
-
-            gantt.select(".tick").selectAll("text")
-                 .attr("transform", "translate(20,0)")
-
-
-                          // Add the y Axis
-             gantt.append("g")
-                   .attr("class", "y axis")
-                   .attr("transform", "translate(-20,0)")  
-                  .call(d3.axisLeft(y));
-             
-              // text label for the y axis
-              gantt.append("g").selectAll("text")
-                  .data(dataToReturn)
-                  .enter().append("text")
-                  //.attr("transform", "rotate(-90)")
-                  .attr("y", function(d,i) {return (i*yOffset)-(yOffset/2)+'px'})
-                  .attr("x", -20 )
-                  .attr("dy", "1em")
-                  .style("text-anchor", "middle")
-                  .text(function(d){return d.Projectnummer});   
-
-            // gridlines in y axis function
-            function make_y_gridlines() {   
-                return d3.axisLeft(y)
-                    .ticks(5)
-            }
-
-
-            // add the Y gridlines
-              gantt.append("g")     
-                  .attr("class", "grid")
-                  .call(make_y_gridlines()
-                      .tickSize(-width)
-                      .tickFormat("")
-                  )
-
-            //var legendOrdinal = d3.legendColor()
-              //d3 symbol creates a path-string, for example
-              //"M0,-8.059274488676564L9.306048591020996,
-              //8.059274488676564 -9.306048591020996,8.059274488676564Z"
-             // .shape("path", d3.symbol().type(d3.symbolTriangle).size(150)())
-             // .shapePadding(10)
-             // .scale(color);
-            }
-
+            vega.embed("#vis", yourVlSpec);
         </script>
     </body>
 </html>

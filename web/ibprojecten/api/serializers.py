@@ -38,11 +38,6 @@ class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
 
 
-class ProjectSerializer(serializers.HyperlinkedModelSerializer):
-    """ Serializer to represent the Employee model """
-    class Meta:
-        model = Project
-        fields = '__all__'
 
 
 class RoleSerializer(serializers.ModelSerializer):
@@ -88,6 +83,36 @@ class EmployeeField(serializers.StringRelatedField):
 class WerkorderField(serializers.StringRelatedField):
     def to_representation(self, value):
         return ('{}'.format(value.WerkorderType))
+
+
+class ProjectSerializer(serializers.HyperlinkedModelSerializer):
+    """ Serializer to represent the Employee model """
+    Ambtelijkopdrachtgever = EmployeeField(many=False, read_only=True, source = 'Opdracht_verantwoordelijke')
+    Bestuurlijkopdrachtgever = EmployeeField(many=False, read_only=True, source = 'Bestuurlijk_opdrachtgever')
+    Opdrachtverantwoordelijke = EmployeeField(many=False, read_only=True, source = 'Opdracht_verantwoordelijke')
+    Deelprojectleider = EmployeeField(many=False, read_only=True, source = 'Deel_projectleider')
+    Accounthouder = EmployeeField(many=False, read_only=True, source = 'Account_houder')
+  
+    class Meta:
+        model = Project
+        fields = ['Locatie',
+            'Type',
+            'AardList',
+            'Opdrachtverantwoordelijke',
+            'Opdracht_verantwoordelijke',
+            'Ambtelijkopdrachtgever',
+            'Ambtelijk_opdrachtgever',
+            'Bestuurlijkopdrachtgever',
+            'Bestuurlijk_opdrachtgever',
+            'Deelprojectleider',
+            'Deel_projectleider',
+            'Accounthouder',
+            'Account_houder',
+            'startdatum',
+            'einddatum',
+            'Plangebied']
+
+
 
 class ProjectGeoJsonSerializer(GeoFeatureModelSerializer):
     """ A class to serialize locations as GeoJSON compatible data """
