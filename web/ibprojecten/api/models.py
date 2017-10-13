@@ -99,7 +99,7 @@ class Employee(models.Model):
 class Project(models.Model):
     pjid = models.AutoField(primary_key=True)
     Locatie = models.CharField(max_length=255, blank=False)
-    Hoofdtype = models.ForeignKey(HoofdType, related_name='hoofd_type_project', on_delete=models.CASCADE, null=True)
+    Hoofdtype = models.ForeignKey(HoofdType, related_name='hoofd_type_project', on_delete=models.CASCADE, blank=True, null=True)
     Aard = models.ManyToManyField(ProjectType, related_name='project_type_project')
     Intakedatum = models.DateField(blank=False, default=datetime.now)
 
@@ -121,7 +121,7 @@ class Project(models.Model):
     # Convert manytomany list into a string 
     @property
     def Type(self):
-        return self.Hoofdtype
+        return '{}'.format(self.Hoofdtype)
 
     @property
     def AardList(self):
