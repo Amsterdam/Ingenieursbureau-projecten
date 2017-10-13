@@ -23,5 +23,5 @@ USER datapunt
 RUN export DJANGO_SETTINGS_MODULE=ibprojecten.settings
 RUN python manage.py collectstatic
 
-CMD uwsgi
+CMD python manage.py migrate --noinput && uwsgi
 
