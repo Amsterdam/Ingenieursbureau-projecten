@@ -102,7 +102,6 @@ LEAFLET_CONFIG = {
     'RESET_VIEW': True,
 }
 
-
 WSGI_APPLICATION = 'ibprojecten.wsgi.application'
 
 

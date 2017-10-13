@@ -20,6 +20,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
+from django.views.generic import RedirectView
+
 
 from ibprojecten.api.views import (HomePageView, 
                                    projectenList, 
@@ -47,6 +49,7 @@ urlpatterns = [
     url(r'^ibprojecten/api/projecten/$', projectenList, name='projecten'),
     url(r'^ibprojecten/api/projecten/(?P<pk>[0-9]+)/$', projectDetail),
     #url(r'^api/employees/(?P<pk>[0-9]+)/$', employeeDetail, name='employee-detail'),
+    url(r'^$', RedirectView.as_view(url='/ibprojecten/')),
     url(r'^ibprojecten/$', HomePageView.as_view(), name='home'),
 ]
 

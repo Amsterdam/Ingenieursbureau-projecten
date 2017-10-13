@@ -42,9 +42,19 @@ class ProjectTypeSerializer(serializers.ModelSerializer):
         model = ProjectType
         fields = '__all__'
 
+class WerkorderSerializer(serializers.ModelSerializer):
+    """ Serializer to represent the Werkorder model """
+    model = Project
+    geo_field = 'WerkorderPlangebied'
+    
+    class Meta:
+        model = Werkorder
+        fields = ['werkordernaam',
+                  'Timetellnummer',
+                  'Boekingscombinatie']
 
 class OrganisationSerializer(serializers.ModelSerializer):
-    """ Serializer to represent the Employee model """
+    """ Serializer to represent the Organisation model """
     class Meta:
         model = Organisatie
         fields = '__all__'

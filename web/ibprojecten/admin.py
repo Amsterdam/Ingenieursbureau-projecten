@@ -1,6 +1,7 @@
 from django.contrib import admin
 from ibprojecten.api.models import Project, Employee, Rol, Werkorder, ProjectType, ProjectPlan, Organisatie
 from leaflet.admin import LeafletGeoAdmin
+from leaflet.admin import LeafletGeoAdminMixin
 
 # Change header name
 admin.site.site_header = 'Startdocument Project Ingenieursbureau'
@@ -47,8 +48,9 @@ admin.site.register(Werkorder, WerkorderAdmin)
 
 
 # Subproject list view in project
-class WerkorderInline(admin.StackedInline):
+class WerkorderInline(LeafletGeoAdminMixin, admin.StackedInline):
     model = Werkorder
+
     show_change_link = True
     extra = 0
 
@@ -72,7 +74,7 @@ class ProjectPlanInline(admin.StackedInline):
 # /////////////////////////////////////////////
 
 
-class ProjectenAdmin(LeafletGeoAdmin, admin.ModelAdmin):
+class ProjectenAdmin(LeafletGeoAdmin):
     list_projects = ('name')
     inlines = [WerkorderInline, ProjectPlanInline]
 

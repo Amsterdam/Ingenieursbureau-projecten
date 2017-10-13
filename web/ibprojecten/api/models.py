@@ -130,7 +130,7 @@ class Werkorder(models.Model):
     Werkordernaam = models.CharField(max_length=255, null=True)
     Timetellnummer = models.CharField(max_length=18, null=True)
     Boekingscombinatie = models.CharField(max_length=18, null=True)
-    #WerkorderPlangebied = models.PolygonField(srid=4326, null=True)
+    WerkorderPlangebied = models.PolygonField(srid=4326, null=True)
     Project = models.ForeignKey(Project,
                                 related_name='werkorder_project_set',
                                 on_delete=models.CASCADE, null=True)
@@ -138,7 +138,7 @@ class Werkorder(models.Model):
     def __str__(self):
         return '{}-{}'.format(self.werkorder_id, self.Werkordernaam)
 
-    #objects = models.GeoManager()
+    objects = models.GeoManager()
 
     class Meta:
         db_table = 'werkorder'

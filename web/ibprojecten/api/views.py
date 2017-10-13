@@ -2,13 +2,14 @@ from django.views.generic import TemplateView
 #from django.core.serializers import serialize
 from django.http import HttpResponse, JsonResponse
 from rest_framework import viewsets
-from ibprojecten.api.models import Project, Employee, Rol, ProjectType, Organisatie
+from ibprojecten.api.models import Project, Employee, Rol, ProjectType, Organisatie, Werkorder
 from ibprojecten.api.serializers import (ProjectSerializer,
                                          EmployeeSerializer,
                                          ProjectGeoJsonSerializer,
                                          RoleSerializer,
                                          ProjectTypeSerializer,
-                                         OrganisationSerializer)
+                                         OrganisationSerializer,
+                                         WerkorderSerializer)
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -49,6 +50,13 @@ class OrganisationViewSet(viewsets.ModelViewSet):
     queryset = Organisatie.objects.all()
     serializer_class = OrganisationSerializer
 
+
+class WerkorderViewSet(viewsets.ModelViewSet):
+    """ ViewSet for viewing and editing Employee objects """
+    queryset = Werkorder.objects.all()
+    serializer_class = WerkorderSerializer
+
+
 def projectenList(request):
     """
     List all code snippets, or create a new snippet.
@@ -71,19 +79,3 @@ def projectDetail(request, pk):
     if request.method == 'GET':
         serializer = ProjectGeoJsonSerializer(project)
         return JsonResponse(serializer.data)
-
-
-def employeeDetail(request, pk):
-
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        employee = Employee.objects.get(pk=pk)
-    except Employee.DoesNotExist:
-        return HttpResponse(status=404)
-
-    if request.method == 'GET':
-        serializer = EmployeeDetailSerializer(employee)
-        return JsonResponse(serializer.data)
-
