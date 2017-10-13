@@ -37,7 +37,7 @@ class HoofdType(models.Model):
     Hoofdtype =  models.CharField(max_length=255, null=True)
 
     def __str__(self):
-        return '{}'.format(self.HoofdtypeAfkorting) 
+        return '{}'.format(self.Hoofdtype) 
 
 
     class Meta:
@@ -45,13 +45,12 @@ class HoofdType(models.Model):
 
 class ProjectType(models.Model):
     type_id = models.AutoField(primary_key=True)
-    Aard = models.CharField(max_length=255, null=True)
-    Hoofdtype = models.ForeignKey(HoofdType,
-                            related_name='hoofdtype_aard',
-                            on_delete=models.CASCADE,
-                            null=True)
+    Soort = models.CharField(max_length=255, null=True)
+    Hoofdtype = models.ManyToManyField(HoofdType,
+                            related_name='hoofdtype_aard'
+                            )
     def __str__(self):
-        return '{} - {}'.format(self.Hoofdtype, self.Aard)
+        return '{}'.format(self.Soort)
 
     class Meta:
         db_table = 'projecttype'
@@ -100,7 +99,8 @@ class Employee(models.Model):
 class Project(models.Model):
     pjid = models.AutoField(primary_key=True)
     Locatie = models.CharField(max_length=255, blank=False)
-    Projecttype = models.ManyToManyField(ProjectType, related_name='project_type_project')
+    Hoofdtype = models.ForeignKey(HoofdType, related_name='hoofd_type_project', on_delete=models.CASCADE, null=True)
+    Aard = models.ManyToManyField(ProjectType, related_name='project_type_project')
     Intakedatum = models.DateField(blank=False, default=datetime.now)
 
     startdatum = models.DateField(blank=False, default=datetime.now)
@@ -121,14 +121,20 @@ class Project(models.Model):
     # Convert manytomany list into a string 
     @property
     def Type(self):
-        return ', '.join(['{} - {}'.format(a.Hoofdtype, a.Aard) for a in self.Projecttype.all()])
-    
+        return self.Hoofdtype
+
+    @property
+    def AardList(self):
+        return ', '.join([a.Soort for a in self.Aard.all()])
+ 
+ 
+
     @property
     def Jaar(self):
         return '{}'.format(self.startdatum.year)
 
     def __str__(self):
-        return '{} - {} - {} - {}'.format(self.pjid, self.Type, self.Locatie, self.Jaar )
+        return '{} - {} - {} - {}'.format(self.pjid, self.Type, self.AardList, self.Locatie, self.Jaar )
 
     objects = models.GeoManager()
 
@@ -166,7 +172,7 @@ class Werkorder(models.Model):
                                 on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return '{}-{}'.format(self.Project.Locatie, self.WerkorderType)
+        return '{}-{}'.format(self.Project.Locatie, self.Werkordertype)
 
     objects = models.GeoManager()
 

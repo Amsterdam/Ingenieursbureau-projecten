@@ -112,6 +112,7 @@ class ProjectGeoJsonSerializer(GeoFeatureModelSerializer):
         fields = [
             'Locatie',
             'Type',
+            'AardList',
             'Opdrachtverantwoordelijke',
             'Ambtelijkopdrachtgever',
             'Bestuurlijkopdrachtgever',
