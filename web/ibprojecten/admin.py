@@ -1,7 +1,6 @@
 from django.contrib import admin
 from ibprojecten.api.models import Project, Employee, Rol, Werkorder, ProjectType, ProjectPlan, Organisatie
-from leaflet.admin import LeafletGeoAdmin
-from leaflet.admin import LeafletGeoAdminMixin
+from leaflet.admin import LeafletGeoAdmin, LeafletGeoAdminMixin
 
 # Change header name
 admin.site.site_header = 'Startdocument Project Ingenieursbureau'
