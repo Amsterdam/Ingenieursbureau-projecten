@@ -30,7 +30,9 @@ from ibprojecten.api.views import (HomePageView,
                                    EmployeeViewSet, 
                                    RoleViewSet, 
                                    ProjectTypeViewSet, 
-                                   OrganisationViewSet)
+                                   OrganisationViewSet,
+                                   WerkorderTypeViewSet,
+                                   HoofdTypeViewSet)
 
 
 router = DefaultRouter()
@@ -38,6 +40,8 @@ router.register(prefix='projects', viewset=ProjectViewSet)
 router.register(prefix='employees', viewset=EmployeeViewSet)
 router.register(prefix='roles', viewset=RoleViewSet)
 router.register(prefix='projecttype', viewset=ProjectTypeViewSet)
+router.register(prefix='hoofdtype', viewset=HoofdTypeViewSet)
+router.register(prefix='werkordertype', viewset=WerkorderTypeViewSet)
 router.register(prefix='organisation', viewset=OrganisationViewSet)
 
 urlpatterns = router.urls

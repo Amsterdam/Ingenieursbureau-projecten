@@ -11,8 +11,24 @@ from ibprojecten.api.models import (Project,
                                     Organisatie,
                                     ProjectPlan,
                                     ProjectType,
+                                    HoofdType,
                                     Werkorder,
+                                    WerkorderType,
                                     )
+
+
+class HoofdTypeSerializer(serializers.HyperlinkedModelSerializer):
+    """ Serializer to represent the Hoofdtype model """
+    class Meta:
+        model = HoofdType
+        fields = '__all__'
+
+
+class WerkorderTypeSerializer(serializers.HyperlinkedModelSerializer):
+    """ Serializer to represent the Werkordertype model """
+    class Meta:
+        model = WerkorderType
+        fields = '__all__'
 
 
 class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
@@ -68,6 +84,9 @@ class EmployeeField(serializers.StringRelatedField):
     #   request = self.context.get('request')
     #   return EmployeeDetailSerializer(vo, many=False, context={'request':request}).data
 
+class WerkorderField(serializers.StringRelatedField):
+    def to_representation(self, value):
+        return ('{}'.format(value.werkordernaam))
 
 class ProjectGeoJsonSerializer(GeoFeatureModelSerializer):
     """ A class to serialize locations as GeoJSON compatible data """
@@ -84,6 +103,7 @@ class ProjectGeoJsonSerializer(GeoFeatureModelSerializer):
     Deelprojectleider = EmployeeField(many=False, read_only=True, source = 'Deel_projectleider')
     Accounthouder = EmployeeField(many=False, read_only=True, source = 'Account_houder')
     
+   # Werkorder = WerkorderField(many=True, read_only=True, source = 'WerkorderType'))
 
     class Meta:
         model = Project

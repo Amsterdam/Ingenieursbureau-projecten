@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from ibprojecten.api.models import Project, Employee, Rol, Werkorder, ProjectType, ProjectPlan, Organisatie
+from ibprojecten.api.models import Project, Employee, Rol, Werkorder, WerkorderType, ProjectType, HoofdType, ProjectPlan, Organisatie
 from leaflet.admin import LeafletGeoAdminMixin
 from leaflet.admin import LeafletGeoAdmin
 from leaflet.admin import LeafletWidget
@@ -12,10 +12,6 @@ admin.site.site_header = 'Startdocument Project Ingenieursbureau'
 # //////////////////////////////////////////////
 # Option lists
 # /////////////////////////////////////////////
-
-class WerkorderLeafletWidget(LeafletWidget):
-    geometry_field_class = 'WerkorderPlangebied'
-
 
 class OrganisatiesAdmin(admin.ModelAdmin):
     list_organisaties = ('Cluster', 'Organisatie')
@@ -38,10 +34,26 @@ class RolesAdmin(admin.ModelAdmin):
 
 admin.site.register(Rol, RolesAdmin)
 
+
+class HoofdTypeAdmin(admin.ModelAdmin):
+    list_roles = ('HoofdType')
+
+
+admin.site.register(HoofdType, HoofdTypeAdmin)
+
+
 class ProjectTypeAdmin(admin.ModelAdmin):
     list_roles = ('ProjectType')
 
+
 admin.site.register(ProjectType, ProjectTypeAdmin)
+
+
+class WerkorderTypeAdmin(admin.ModelAdmin):
+    list_werkorders = ('WerkorderType')
+
+
+admin.site.register(WerkorderType, WerkorderTypeAdmin)
 
 
 class WerkorderAdmin(LeafletGeoAdmin, admin.ModelAdmin):
@@ -56,6 +68,7 @@ class WerkorderInline(LeafletGeoAdminMixin, admin.StackedInline):
     model = Werkorder
     show_change_link = True
     extra = 1
+
 
 class ProjectPlanAdmin(admin.ModelAdmin):
     list_projectplan = ('Projectplan')

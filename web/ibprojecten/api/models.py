@@ -31,18 +31,40 @@ class Rol(models.Model):
     class Meta:
         db_table = 'rol'
 
+class HoofdType(models.Model):
+    class_id = models.AutoField(primary_key=True)
+    HoofdtypeAfkorting = models.CharField(max_length=255, null=True)
+    Hoofdtype =  models.CharField(max_length=255, null=True)
+
+    def __str__(self):
+        return '{}'.format(self.HoofdtypeAfkorting) 
+
+
+    class Meta:
+        db_table = 'hoofdtype'
 
 class ProjectType(models.Model):
     type_id = models.AutoField(primary_key=True)
-    Projectype = models.CharField(max_length=255, null=True)
-
+    Aard = models.CharField(max_length=255, null=True)
+    Hoofdtype = models.ForeignKey(HoofdType,
+                            related_name='hoofdtype_aard',
+                            on_delete=models.CASCADE,
+                            null=True)
     def __str__(self):
-        return '{}'.format(self.Projectype)
-    #def __unicode__(self):
-    #    return self.Projectype
+        return '{} - {}'.format(self.Hoofdtype, self.Aard)
 
     class Meta:
         db_table = 'projecttype'
+
+class WerkorderType(models.Model):
+    type_id = models.AutoField(primary_key=True)
+    Werkordertype = models.CharField(max_length=255, null=True)
+
+    def __str__(self):
+        return '{}'.format(self.Werkordertype)
+ 
+    class Meta:
+        db_table = 'werkordertype'
 
 
 class Employee(models.Model):
@@ -99,7 +121,7 @@ class Project(models.Model):
     # Convert manytomany list into a string 
     @property
     def Type(self):
-        return ', '.join([a.Projectype for a in self.Projecttype.all()])
+        return ', '.join(['{} - {}'.format(a.Hoofdtype, a.Aard) for a in self.Projecttype.all()])
     
     @property
     def Jaar(self):
@@ -127,9 +149,15 @@ class Project(models.Model):
 
 # Subprojects
 
+
 class Werkorder(models.Model):
     werkorder_id = models.AutoField(primary_key=True)
     Werkordernaam = models.CharField(max_length=255, blank=True, null=True)
+    startdatum = models.DateField(blank=False, default=datetime.now)
+    einddatum = models.DateField(blank=False, default=datetime.now)
+    Werkordertype = models.ForeignKey(WerkorderType,
+                                related_name='werkordertype_werkorder_set',
+                                on_delete=models.CASCADE, blank=True, null=True)
     Timetellnummer = models.CharField(max_length=18, blank=True, null=True)
     Boekingscombinatie = models.CharField(max_length=18, blank=True, null=True)
     WerkorderPlangebied = models.PolygonField(srid=4326, blank=True, null=True)

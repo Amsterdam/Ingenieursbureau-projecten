@@ -2,14 +2,23 @@ from django.views.generic import TemplateView
 #from django.core.serializers import serialize
 from django.http import HttpResponse, JsonResponse
 from rest_framework import viewsets
-from ibprojecten.api.models import Project, Employee, Rol, ProjectType, Organisatie, Werkorder
+from ibprojecten.api.models import (Project,
+                                    Employee,
+                                    Rol,
+                                    ProjectType,
+                                    HoofdType,
+                                    Organisatie,
+                                    Werkorder,
+                                    WerkorderType)
 from ibprojecten.api.serializers import (ProjectSerializer,
                                          EmployeeSerializer,
                                          ProjectGeoJsonSerializer,
                                          RoleSerializer,
                                          ProjectTypeSerializer,
+                                         HoofdTypeSerializer,
                                          OrganisationSerializer,
-                                         WerkorderSerializer)
+                                         WerkorderSerializer,
+                                         WerkorderTypeSerializer)
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -39,10 +48,22 @@ class RoleViewSet(viewsets.ModelViewSet):
     serializer_class = RoleSerializer
 
 
+class HoofdTypeViewSet(viewsets.ModelViewSet):
+    """ ViewSet for viewing and editing Employee objects """
+    queryset = HoofdType.objects.all()
+    serializer_class = HoofdTypeSerializer
+
+
 class ProjectTypeViewSet(viewsets.ModelViewSet):
     """ ViewSet for viewing and editing Employee objects """
     queryset = ProjectType.objects.all()
     serializer_class = ProjectTypeSerializer
+
+
+class WerkorderTypeViewSet(viewsets.ModelViewSet):
+    """ ViewSet for viewing and editing Employee objects """
+    queryset = WerkorderType.objects.all()
+    serializer_class = WerkorderTypeSerializer
 
 
 class OrganisationViewSet(viewsets.ModelViewSet):
