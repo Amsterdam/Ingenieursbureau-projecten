@@ -77,7 +77,7 @@ class Employee(models.Model):
 
 class Project(models.Model):
     pjid = models.AutoField(primary_key=True)
-    Locatie = models.CharField(max_length=255)
+    Locatie = models.CharField(max_length=255, blank=False)
     Projecttype = models.ManyToManyField(ProjectType, related_name='project_type_project')
     Intakedatum = models.DateField(blank=False, default=datetime.now)
 
@@ -90,11 +90,11 @@ class Project(models.Model):
 
     Bestuurlijk_opdrachtgever = models.ForeignKey(Employee, related_name='administrativeclient_project', on_delete=models.CASCADE, blank=True, null=True)
     Ambtelijk_opdrachtgever = models.ForeignKey(Employee, blank=True, related_name='officialclient_project', on_delete=models.CASCADE, null=True)
-    Opdracht_verantwoordelijke = models.ForeignKey(Employee, blank=True, related_name='maincontractor_project', on_delete=models.CASCADE, null=True)
+    Opdracht_verantwoordelijke = models.ForeignKey(Employee, blank=False, related_name='maincontractor_project', on_delete=models.CASCADE, null=True)
     Deel_projectleider = models.ForeignKey(Employee, blank=True, related_name='subcontractor_project', on_delete=models.CASCADE, null=True)
     Account_houder = models.ForeignKey(Employee, blank=True, related_name='accountant_project', on_delete=models.CASCADE, null=True)
 
-    Timetellnummer = models.CharField(max_length=18, null=True)
+    Timetellnummer = models.CharField(max_length=18, blank=True, null=True)
 
     # Convert manytomany list into a string 
     @property
@@ -112,9 +112,11 @@ class Project(models.Model):
 
     Indicatiebedrag = models.DecimalField(max_digits=9,
                                           decimal_places=2,
+                                          blank=True,
                                           default=0.00)
     Maximumbedrag = models.DecimalField(max_digits=9,
                                         decimal_places=2,
+                                        blank=True,
                                         default=0.00)
     Vervolgafspraken = models.TextField(max_length=None,
                                         blank=True,
@@ -127,10 +129,10 @@ class Project(models.Model):
 
 class Werkorder(models.Model):
     werkorder_id = models.AutoField(primary_key=True)
-    Werkordernaam = models.CharField(max_length=255, null=True)
-    Timetellnummer = models.CharField(max_length=18, null=True)
-    Boekingscombinatie = models.CharField(max_length=18, null=True)
-    WerkorderPlangebied = models.PolygonField(srid=4326, null=True)
+    Werkordernaam = models.CharField(max_length=255, blank=True, null=True)
+    Timetellnummer = models.CharField(max_length=18, blank=True, null=True)
+    Boekingscombinatie = models.CharField(max_length=18, blank=True, null=True)
+    WerkorderPlangebied = models.PolygonField(srid=4326, blank=True, null=True)
     Project = models.ForeignKey(Project,
                                 related_name='werkorder_project_set',
                                 on_delete=models.CASCADE, null=True)

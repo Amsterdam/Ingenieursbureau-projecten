@@ -4,13 +4,13 @@ MAINTAINER datapunt@amsterdam.nl
 ENV PYTHONUNBUFFERED 1
 
 
-
-RUN mkdir -p /static \
+RUN adduser --system datapunt \
+    && mkdir -p /static \
 	&& chown datapunt /static 
 
-COPY requirements.txt /app/
+COPY ibprojecten/static/ static/
 
-COPY /ibprojecten/docker-migrate.sh /app/
+COPY requirements.txt /app/
 
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
@@ -22,6 +22,6 @@ USER datapunt
 
 RUN export DJANGO_SETTINGS_MODULE=ibprojecten.settings
 RUN python manage.py collectstatic
-CMD python manage.py migrate --noinput
+
 CMD uwsgi
 
