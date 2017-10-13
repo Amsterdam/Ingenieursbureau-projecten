@@ -10,6 +10,8 @@ RUN mkdir -p /static \
 
 COPY requirements.txt /app/
 
+COPY /ibprojecten/docker-migrate.sh /app/
+
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
 COPY . /app/
@@ -20,6 +22,6 @@ USER datapunt
 
 RUN export DJANGO_SETTINGS_MODULE=ibprojecten.settings
 RUN python manage.py collectstatic
-
+CMD python manage.py migrate --noinput
 CMD uwsgi
 
