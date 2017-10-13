@@ -20,5 +20,6 @@ USER datapunt
 
 RUN export DJANGO_SETTINGS_MODULE=ibprojecten.settings
 RUN python manage.py collectstatic
+RUN python manage.py migrate
 CMD uwsgi
 
