@@ -58,14 +58,15 @@ class ProjectTypeSerializer(serializers.ModelSerializer):
         model = ProjectType
         fields = '__all__'
 
-class WerkorderSerializer(serializers.ModelSerializer):
+class WerkorderSerializer(GeoFeatureModelSerializer):
     """ Serializer to represent the Werkorder model """
-    model = Project
     geo_field = 'WerkorderPlangebied'
     
     class Meta:
         model = Werkorder
-        fields = ['werkordernaam',
+        fields = ['werkorderType',
+                  'startdatum',
+                  'einddatum',
                   'Timetellnummer',
                   'Boekingscombinatie']
 
@@ -86,7 +87,7 @@ class EmployeeField(serializers.StringRelatedField):
 
 class WerkorderField(serializers.StringRelatedField):
     def to_representation(self, value):
-        return ('{}'.format(value.werkordernaam))
+        return ('{}'.format(value.WerkorderType))
 
 class ProjectGeoJsonSerializer(GeoFeatureModelSerializer):
     """ A class to serialize locations as GeoJSON compatible data """
@@ -117,6 +118,6 @@ class ProjectGeoJsonSerializer(GeoFeatureModelSerializer):
             'Deelprojectleider',
             'Accounthouder',
             'startdatum',
-            'einddatum',
+            'einddatum'
             #'Plangebied',
             ]

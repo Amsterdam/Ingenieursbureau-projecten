@@ -3,7 +3,7 @@ from django import forms
 from ibprojecten.api.models import Project, Employee, Rol, Werkorder, WerkorderType, ProjectType, HoofdType, ProjectPlan, Organisatie
 from leaflet.admin import LeafletGeoAdminMixin
 from leaflet.admin import LeafletGeoAdmin
-from leaflet.admin import LeafletWidget
+
 # Change header name
 admin.site.site_header = 'Startdocument Project Ingenieursbureau'
 
@@ -67,7 +67,7 @@ admin.site.register(Werkorder, WerkorderAdmin)
 class WerkorderInline(LeafletGeoAdminMixin, admin.StackedInline):
     model = Werkorder
     show_change_link = True
-    extra = 1
+    extra = 3
 
 
 class ProjectPlanAdmin(admin.ModelAdmin):

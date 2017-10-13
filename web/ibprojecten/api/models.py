@@ -108,7 +108,7 @@ class Project(models.Model):
 
     Plangebied = models.PolygonField(srid=4326, null=True)
 
-    Organisatie = models.ForeignKey(Organisatie, blank=True, related_name='organisatie_project', on_delete=models.CASCADE, null=True)
+    Organisatie_opdrachtgever = models.ForeignKey(Organisatie, blank=True, related_name='organisatie_project', on_delete=models.CASCADE, null=True)
 
     Bestuurlijk_opdrachtgever = models.ForeignKey(Employee, related_name='administrativeclient_project', on_delete=models.CASCADE, blank=True, null=True)
     Ambtelijk_opdrachtgever = models.ForeignKey(Employee, blank=True, related_name='officialclient_project', on_delete=models.CASCADE, null=True)
@@ -152,13 +152,13 @@ class Project(models.Model):
 
 class Werkorder(models.Model):
     werkorder_id = models.AutoField(primary_key=True)
-    Werkordernaam = models.CharField(max_length=255, blank=True, null=True)
     startdatum = models.DateField(blank=False, default=datetime.now)
     einddatum = models.DateField(blank=False, default=datetime.now)
     Werkordertype = models.ForeignKey(WerkorderType,
                                 related_name='werkordertype_werkorder_set',
                                 on_delete=models.CASCADE, blank=True, null=True)
     Timetellnummer = models.CharField(max_length=18, blank=True, null=True)
+    TimetellNaam = models.CharField(max_length=255, blank=True, null=True)
     Boekingscombinatie = models.CharField(max_length=18, blank=True, null=True)
     WerkorderPlangebied = models.PolygonField(srid=4326, blank=True, null=True)
     Project = models.ForeignKey(Project,
@@ -166,7 +166,7 @@ class Werkorder(models.Model):
                                 on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return '{}-{}'.format(self.werkorder_id, self.Werkordernaam)
+        return '{}-{}'.format(self.Project.Locatie, self.WerkorderType)
 
     objects = models.GeoManager()
 
