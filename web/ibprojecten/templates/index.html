@@ -4,6 +4,35 @@
     <head>
         {% leaflet_js %}
         {% leaflet_css %}
+        <title>Projecten Ingenieursbureau Amsterdam</title>
+        <meta charset="utf-8" />
+        <link rel="icon" href="https://www.amsterdam.nl/favicon.ico" type="image/x-icon">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <script type="text/javascript" src="{% static '/js/leaflet.ajax.min.js' %}"></script>
+        <script type="text/javascript" src="{% static '/js/leaflet.wms.js' %}"></script>
+        <!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>-->
+        <script type="text/javascript" src="{% static '/js/jquery-3.1.1.js' %}"></script>
+        <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.4.2/b-html5-1.4.2/datatables.min.css"/>-->
+
+        <link rel="stylesheet" type="text/css" href="{% static '/css/datatables.min.css' %}" rel="stylesheet" type="text/css">
+        <!--<link href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css">-->
+        <link href="{% static '/css/buttons.dataTables.min.css' %}" rel="stylesheet" type="text/css">
+        <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>-->
+        <script type="text/javascript" src="{% static '/js/vfs_fonts.js' %}"></script>
+        <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>-->
+        <script type="text/javascript" src="{% static '/js/pdfmake.min.js' %}"></script>
+        <!--<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.4.2/b-html5-1.4.2/datatables.min.js"></script>-->
+        <script type="text/javascript" src="{% static '/js/datatables.min.js' %}"></script>
+        <!--<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>-->
+        <script type="text/javascript" src="{% static '/js/dataTables.buttons.min.js' %}"></script>
+        
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.2/vega.js"></script> -->
+        <script type="text/javascript" src="{% static '/js/vega.js' %}"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.0-rc3/vega-lite.js"></script>-->
+        <script type="text/javascript" src="{% static '/js/vega-lite.js' %}"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-beta.20/vega-embed.js"></script>-->
+        <script type="text/javascript" src="{% static '/js/vega-embed.js' %}"></script>
         <style type="text/css">
             html {
                 font-family: "Corbel";
@@ -17,7 +46,10 @@
             }
 
             #gis {width: 80%; height: 700px;}
-            
+            #gis path { 
+              stroke: blue;
+              stroke-width : 1px;
+             }
             .chart {
                 font-family: Arial, sans-serif;
                 font-size: 12px;
@@ -49,29 +81,13 @@
                 fill: #ffbb33;
             }
              
+             .vis {
+              width:100%;
+
+             }
 
 
         </style>
-        <title>Projecten Ingenieursbureau Amsterdam</title>
-        <meta charset="utf-8" />
-        <link rel="icon" href="https://www.amsterdam.nl/favicon.ico" type="image/x-icon">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-        <script type="text/javascript" src="{% static '/js/leaflet.ajax.min.js' %}"></script>
-        <script type="text/javascript" src="{% static '/js/leaflet.wms.js' %}"></script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.4.2/b-html5-1.4.2/datatables.min.css"/>
- 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.4.2/b-html5-1.4.2/datatables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
-        <link href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css">
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.2/vega.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.0-rc3/vega-lite.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-beta.20/vega-embed.js"></script>
-
     </head>
 
     <body>
@@ -204,7 +220,7 @@
             console.log(columns);
             
             $(document).ready(function() {
-             $('#example').DataTable( {
+             $('#tableView').DataTable( {
                 data: dataSet,
                 "searching": true,
                 columns: columns,
@@ -223,20 +239,23 @@
         </script>
         <div class="content-wrapper">
             {% leaflet_map "gis" callback="window.loadData" %}
-            <!--<table id="properties"></table>-->
-            <table id="example" class="display" width="100%"></table>
-            <div id="vis"></div>
+            <div id="ganntView"></div>
+            <table id="tableView" class="display" width="100%"></table>
+           
 
 
         </div>
 
         
            <script>
+            console.log("{{ request.scheme }}://{{ request.get_host }}ibprojecten/api/projects/?format=json")
             // More argument info at https://github.com/vega/vega-embed
-            var yourVlSpec = {
+            var ganttSpec = {
               "$schema": "https://vega.github.io/schema/vega-lite/v2.0.0-rc3.json",
-              "description": "A simple bar chart with embedded data.",
-              "data": { "url": "http://localhost:8000/ibprojecten/api/projects/?format=json",
+              "description": "Gannt chart of projects",
+              "title": "Projectenplanning",
+              "width": 600,
+              "data": { "url": "{{ request.scheme }}://{{ request.get_host }}/ibprojecten/api/projects/?format=json",
                         "format": {
                             "type": "json",
                             "parse": {"startdatum": "date:'%Y-%m-%d'", 
@@ -246,21 +265,26 @@
                       },
               "mark": "bar",
               "encoding": {
-                "y": {"field": "Locatie", "type": "ordinal"},
+                "y": {"field": "Locatie", 
+                      "type": "ordinal"},
                 "x": {"field": "startdatum",   
-                      "timeUnit": "yearmonth",  
+                      "timeUnit": "yearmonth", 
+                      "title": "maand",
                       "type": "temporal",
                       "scale": {"nice": "month"},
-                      "axis": {"format": "%Y-%m", "labelAngle": 0}
+                      "axis": {"format": "%m-%Y", 
+                               "labelAngle": 0, 
+                               "title": "maand"}
                      },
-                "x2": {"field": "einddatum", "type": "temporal"},
+                "x2": {"field": "einddatum", 
+                       "type": "temporal"},
                 "color": {"field": "Type",
                           "type": "ordinal",
                           "scale": {"scheme": "category20b"}
                         }
               }
             }
-            vega.embed("#vis", yourVlSpec);
+            vega.embed("#ganntView", ganttSpec);
         </script>
     </body>
 </html>
