@@ -58,7 +58,7 @@ if (BRANCH == "master") {
 
 
     stage('Waiting for approval') {
-        slackSend channel: '#ci-channel-app', color: 'warning', message: 'Ingenieursburea-projecten is waiting for Production Release - please confirm'
+        slackSend channel: '#ci-channel-app', color: 'warning', message: 'IB-projecten is waiting for Production Release - please confirm'
         input "Deploy to Production?"
     }
 
