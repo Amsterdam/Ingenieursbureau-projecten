@@ -20,16 +20,14 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
-from django.views.generic import RedirectView
 
-
-from ibprojecten.api.views import (HomePageView, 
-                                   projectenList, 
-                                   projectDetail, 
-                                   ProjectViewSet, 
-                                   EmployeeViewSet, 
-                                   RoleViewSet, 
-                                   ProjectTypeViewSet, 
+from ibprojecten.api.views import (HomePageView,
+                                   projectenList,
+                                   projectDetail,
+                                   ProjectViewSet,
+                                   EmployeeViewSet,
+                                   RoleViewSet,
+                                   ProjectTypeViewSet,
                                    OrganisationViewSet,
                                    WerkorderTypeViewSet,
                                    HoofdTypeViewSet)
@@ -49,11 +47,8 @@ urlpatterns = router.urls
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
-    #url(r'^', include('app.urls')),
     url(r'^api/projecten/$', projectenList, name='projecten'),
     url(r'^api/projecten/(?P<pk>[0-9]+)/$', projectDetail),
-    #url(r'^api/employees/(?P<pk>[0-9]+)/$', employeeDetail, name='employee-detail'),
-    url(r'^$', RedirectView.as_view(url='/')),
     url(r'^$', HomePageView.as_view(), name='home'),
 ]
 
