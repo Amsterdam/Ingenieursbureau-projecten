@@ -248,14 +248,14 @@
 
         
            <script>
-            console.log("{{ request.scheme }}://{{ request.get_host }}ibprojecten/api/projects/?format=json")
+            console.log("{{ request.scheme }}://{{ request.get_host }}api/projects/?format=json")
             // More argument info at https://github.com/vega/vega-embed
             var ganttSpec = {
               "$schema": "https://vega.github.io/schema/vega-lite/v2.0.0-rc3.json",
               "description": "Gannt chart of projects",
               "title": "Projectenplanning",
               "width": 600,
-              "data": { "url": "{{ request.scheme }}://{{ request.get_host }}/ibprojecten/api/projects/?format=json",
+              "data": { "url": "{{ request.scheme }}://{{ request.get_host }}/api/projects/?format=json",
                         "format": {
                             "type": "json",
                             "parse": {"startdatum": "date:'%Y-%m-%d'", 
