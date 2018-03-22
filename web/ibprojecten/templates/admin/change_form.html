@@ -16,7 +16,7 @@ $(function() {
  $("#id_Locatie").autocomplete({
     source : function(request, response) {
              $.ajax({
-                url : "https://api.datapunt.amsterdam.nl/atlas/typeahead/bag/",
+                url : "https://api.data.amsterdam.nl/atlas/typeahead/bag/",
                 type : "GET",
                 data : { q : request.term },
                 dataType : "json",
