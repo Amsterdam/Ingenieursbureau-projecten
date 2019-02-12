@@ -49,6 +49,7 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api/projecten/$', projectenList, name='projecten'),
     url(r'^api/projecten/(?P<pk>[0-9]+)/$', projectDetail),
+    url(r'^status/', include('ibprojecten.health.urls')),
     url(r'^$', HomePageView.as_view(), name='home'),
 ]
 
